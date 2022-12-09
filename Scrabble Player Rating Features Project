@@ -1,0 +1,31 @@
+SELECT AVG(game_duration_seconds) FROM _scrabble_games_aggregate_data;
+
+
+
+SELECT
+    winner,
+    AVG(game_duration_seconds)
+FROM _scrabble_games_aggregate_data GROUP BY winner;
+
+
+
+
+
+
+
+SELECT game_duration_seconds,
+(CASE WHEN DENSE_RANK() OVER (PARTITION BY ORDER_NO ORDER BY NOT_BEFORE_DATE 
+ ASC) = 1
+         THEN 'what-if'
+         ELSE 'wh'
+         END) AS VERSION_NEW
+,
+(CASE WHEN DENSE_RANK() OVER (PARTITION BY ORDER_NO ORDER BY  
+NOT_BEFORE_DATE ASC) = 1
+        THEN 'initial'
+        ELSE 'other'
+        END) AS VERSION
+
+FROM _scrabble_games_aggregate_data
+WHERE ITEM IN (winner)
+;
