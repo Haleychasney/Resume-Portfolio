@@ -1,0 +1,27 @@
+
+SELECT
+    country,
+    nitrogen_oxide
+FROM _air_pollution_2019 ORDER BY nitrogen_oxide DESC LIMIT 1;
+
+
+
+
+SELECT
+    country,
+    nmvocs
+FROM _air_pollution_2019 ORDER BY nmvocs DESC LIMIT 1;
+
+
+
+
+SELECT 
+    datename(month, nitrogen_oxide) Month,
+    year(2019) Year,
+    avg(_air_pollution_2019) AverageAmount
+FROM 
+    myDB
+GROUP BY 
+    datename(month, _air_pollution_2019), year(2019)
+ORDER BY 
+    year(2019), datename(month,_air_pollution_2019)
