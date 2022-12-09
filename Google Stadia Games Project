@@ -1,0 +1,19 @@
+SELECT
+    genre_s_,
+    COUNT(*) AS count
+FROM _df_1 GROUP BY genre_s_ ORDER BY count DESC LIMIT 5;
+
+
+
+SELECT
+    developer_s_,
+    COUNT(*) AS num_games
+FROM _df_1 GROUP BY developer_s_ ORDER BY num_games DESC LIMIT 5;
+
+
+SELECT  genre_s_,
+(CASE WHEN DENSE_RANK() OVER (PARTITION BY ORDER_NO ORDER BY NOT_BEFORE_DATE 
+ ASC) = 1
+         THEN 'what-if'
+         ELSE 'wh'
+         END) AS VERSION_NEW
