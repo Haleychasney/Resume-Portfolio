@@ -1,0 +1,18 @@
+SELECT AVG(price)
+FROM _realestateau_1000_samples WHERE property_type = 'House';
+
+
+
+SELECT
+    state,
+    COUNT(*)
+FROM _realestateau_1000_samples GROUP BY state ORDER BY COUNT(*) DESC LIMIT 1;
+
+
+
+SELECT
+    property_type,
+    COUNT(*)
+FROM
+    _realestateau_1000_samples
+GROUP BY property_type ORDER BY COUNT(*) DESC LIMIT 1;
